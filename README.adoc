@@ -1,0 +1,138 @@
+= Angular NGINX Docker example
+
+An example project demostrating deployment of angular application in nginx using docker.
+
+== Why NGINX, why not Node.js
+
+There can be cases where you have angular application directly communicating with backend application using REST API serviced by Spring Boot application and you do not have scenario of transforming data/ abstraction of REST API by EXPRESS JS. In this case instead of writing express.js code to send static files, we can use NGINX to server static files and leaverage the benefits of NGINX features such as `sendfile`, `bufferring`, `security`, `menitoring` etc.
+
+== How to run 
+
+* Clone the project.
++
+[source,shell]
+----
+$ git clone https://github.com/kprasad99/angular-nginx-docker.git
+----
+
+* Go to project directory
++
+[source,shell]
+----
+$ cd angular-nginx-docker
+----
+
+* Initialize the project
++
+[source,shell]
+----
+$ npm install
+----
+
+* Build the project
++
+[source,shell]
+----
+$ ng build --prod
+----
+
+=== Deploy using docker command
+
+* Build the image
++
+[source,shell]
+----
+$ docker build -t angular-nginx-docker .
+----
+
+* Create and start the container as daemon
++
+[source,shell]
+----
+$ docker run -p 80:80 -d --name kp-container angular-nginx-docker
+----
+
+=== Deploy using docker compose command
+
+* Build the image
++
+[source,shell]
+----
+$ docker-compose build angular-nginx-docker
+----
+
+* Create the container
++
+[source,shell]
+----
+$ docker-compose create angular-nginx-docker
+----
+
+* To start the container
++
+[source,shell]
+----
+$ docker-compose start -d angular-nginx-docker
+----
++
+NOTE: use `-d` to start container as daemon
+
+* Alternatively you can club all the above `docker-compose` command to single as shown below, which will build image, create container and start the container
++
+[source,shell]
+----
+$ docker-compose up --build -d angular-nginx-docker
+----
+
+=== Verify
+
+Open browser and use docker server URL to access the application. for example if docker is running on localhost url shall be `http://localhost`
+
+== Useful command
+
+* List images
++
+[source,shell]
+----
+$ docker images
+----
+
+* List running containers
++
+[source,shell]
+----
+$ docker ps
+----
+
+* List all containers both running and stopped
++
+[source,shell]
+----
+$ docker ps -a
+----
+
+* Remove container
++
+[source,shell]
+----
+$ docker rm kp-container
+----
+NOTE: use `-f` to remove running containers `docker rm -f kp-container`
+
+* Remove image
++
+[source,shell]
+----
+$ docker rmi angular-nginx-docker
+----
+
+* Remove containers and images using docker-compose
++
+[source,shell]
+----
+$ docker-compose down --rmi all
+----
+
+== Useful Links
+
+https://hub.docker.com/_/nginx[NGINX dockerhub] for more info on configuring nginx settings using nginx.conf files etc.
