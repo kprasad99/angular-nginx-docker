@@ -3,11 +3,17 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatToolbarModule, MatRippleModule, MatIconModule, MatButtonModule, MatMenuModule, MatDividerModule} from '@angular/material';
+
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatRippleModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -16,11 +22,13 @@ import { MatToolbarModule, MatRippleModule, MatIconModule, MatButtonModule, MatM
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     FlexLayoutModule,
-    MatToolbarModule, MatRippleModule, MatIconModule, MatButtonModule, MatMenuModule,
+    MatToolbarModule,
+    MatRippleModule,
+    MatIconModule, MatButtonModule, MatMenuModule,
     MatDividerModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    BrowserAnimationsModule
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
