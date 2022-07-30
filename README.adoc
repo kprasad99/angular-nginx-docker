@@ -6,7 +6,7 @@ An example project demostrating deployment of angular application in nginx using
 
 There can be cases where you have angular application directly communicating with backend application using REST API serviced by Spring Boot application and you do not have scenario of transforming data/ abstraction of REST API by EXPRESS JS. In this case instead of writing express.js code to send static files, we can use NGINX to server static files and leaverage the benefits of NGINX features such as `sendfile`, `bufferring`, `security`, `menitoring` etc.
 
-== How to run 
+== How to run
 
 * Clone the project.
 +
@@ -26,7 +26,7 @@ $ cd angular-nginx-docker
 +
 [source,shell]
 ----
-$ npm install
+$ yarn
 ----
 
 * Build the project
